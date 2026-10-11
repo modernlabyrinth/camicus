@@ -1,0 +1,17 @@
+{
+  "name": "camicus",
+  "plugins": [
+    {
+      "name": "camicus",
+      "source": {
+        "source": "local",
+        "path": "./plugins/camicus"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Productivity"
+    }
+  ]
+}

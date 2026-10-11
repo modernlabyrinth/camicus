@@ -1,7 +1,7 @@
 {
   "name": "camicus",
   "version": "0.1.0",
-  "description": "Private local weekly-brief checks and bounded read-only Mac audit.",
+  "description": "Local weekly-brief checks and bounded read-only Mac audit.",
   "author": {
     "name": "Modern Labyrinth"
   },

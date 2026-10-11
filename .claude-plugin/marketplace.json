@@ -1,0 +1,14 @@
+{
+  "name": "camicus",
+  "description": "Camicus local evidence workflows for Codex and Claude Code.",
+  "owner": {
+    "name": "Modern Labyrinth"
+  },
+  "plugins": [
+    {
+      "name": "camicus",
+      "source": "./plugins/camicus",
+      "description": "Local weekly-brief checks and bounded read-only Mac audit."
+    }
+  ]
+}

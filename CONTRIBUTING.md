@@ -1,11 +1,10 @@
 # Contributing
 
-This is an unreleased local alpha candidate. A public repository, maintainer and
-contribution intake have not been established. This file describes the intended
-contribution process once those routes exist.
+Camicus is a public alpha maintained by Modern Labyrinth. Open a sanitized
+GitHub issue before a substantial change; security reports use SECURITY.md.
 
 Start with a reproducible fictional failing example and the expected bounded
-behavior. Keep a change focused on the declared weekly-brief contract. Add a test
+behavior. Keep a change focused on the declared weekly-brief, Mac-audit or packaging contract. Add a test
 that fails before the fix, run `python3 -I -S tests/run.py`, and disclose the actual
 Python/macOS/filesystem tested. Never commit credentials, private receipts,
 client exports, machine inventories or raw agent transcripts.
@@ -17,7 +16,7 @@ calls, background services and global agent settings need a separate design.
 
 For a release, review the exact commit and archive digest, run the supported
 interpreter matrix, and repeat both native-harness demonstrations when packaged
-bytes change. Version `0.1.0` is unreleased; it is not a promise of stable APIs.
+bytes change. Version `0.1.0` is an alpha; it is not a promise of stable APIs.
 Result tool-version matching is exact. Future releases must document changes and
 compatibility; never silently rewrite old receipts or replace a tagged artifact.
 

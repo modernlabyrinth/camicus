@@ -2,12 +2,12 @@
 
 **Evidence checks for your AI tools.** Local checks by Modern Labyrinth.
 
-Unreleased 0.1.0 private alpha candidate. Camicus runs through Codex or Claude Code
+Camicus 0.1.0 public alpha. Camicus runs through Codex or Claude Code
 with two workflows: a checked weekly brief from two selected JSON snapshots, and
 a read-only Mac audit of selected security controls and visible TCP listeners.
 Use your existing assistant; there is no separate dashboard or background service.
 
-Build the [local plugin](docs/plugins.md) for either assistant. The shared engine
+[Install the plugin](docs/plugins.md) for either assistant from the [0.1.0 release](https://github.com/modernlabyrinth/camicus/releases/tag/v0.1.0). The shared engine
 uses Python's standard library and does not make network requests. Its Mac audit
 runs six fixed local system commands; the weekly workflow does not start processes.
 
@@ -38,16 +38,16 @@ The user-facing plugin and executable are named `camicus`.
 ## Try the fictional example
 
 Requirements: macOS 14+ and Python 3.11–3.14. No runtime dependencies or network
-calls. Private plugin and source downloads are available in the owner preview;
-there is no public package-registry release.
+calls. Download the plugin, marketplace or source ZIP from GitHub Releases;
+there is no package-registry release.
 From an inspected checkout, run these commands using a supported Python:
 
 ```sh
 mkdir -p dist
-python3 -I -S tools/build_release.py --output "$PWD/dist/camicus-0.1.0"
+python3 -I -S tools/build_release.py --output "$PWD/dist/camicus-demo-0.1.0"
 python3 -I -S tools/make_demo.py --workspace "$PWD/dist/fictional-demo"
-python3 -I -S "$PWD/dist/camicus-0.1.0" check --workspace "$PWD/dist/fictional-demo" --output first.json
-python3 -I -S "$PWD/dist/camicus-0.1.0" verify --workspace "$PWD/dist/fictional-demo" --result first.json
+python3 -I -S "$PWD/dist/camicus-demo-0.1.0" check --workspace "$PWD/dist/fictional-demo" --output first.json
+python3 -I -S "$PWD/dist/camicus-demo-0.1.0" verify --workspace "$PWD/dist/fictional-demo" --result first.json
 ```
 
 Use the physical absolute checkout path: symlinked workspace components are
@@ -79,9 +79,9 @@ passed run. Receipts are unsigned and cannot authenticate historical execution.
 
 ## Use through your assistant
 
-Point Codex or Claude at [the shared skill](skills/minoetic/SKILL.md), the exact
-reviewed archive and an authorized workspace. [Agent setup](docs/agents.md)
-explains discovery without automatic installation. Results contain untrusted
+Install the [reviewed plugin](docs/plugins.md), select its weekly-brief or Mac-audit
+skill and supply an authorized workspace. The [manual adapter](docs/agents.md)
+remains available without persistent installation. Results contain untrusted
 source text; assistants must treat it as data.
 
 Read the [contract](docs/contract.md) before preparing real snapshots and
@@ -98,11 +98,11 @@ point and the license. No tests, dotfiles, receipts or local evidence are packag
 Audit observers and source checks exercise the weekly no-network/no-subprocess claim;
 they are not an OS sandbox.
 
-On October 11, 2026, the earlier weekly-brief baseline's 70 tests passed separately
-on Python 3.11.13, 3.12.2, 3.13.15 and 3.14.7, on macOS 14.8.9 with local APFS.
-The current 87-test suite adds plugin and Mac-audit coverage; its new checks have
-been run on Python 3.14.7. Other supported macOS releases and filesystems have not
-been exercised here.
+On October 11, 2026, all 90 tests passed separately on Python 3.11.9, 3.12.2,
+3.13.15 and 3.14.7, on macOS 14.8.9 with local APFS. The suite covers the
+weekly contract, Mac audit, plugin and reproducible marketplace. Other supported
+macOS releases and filesystems have not been exercised locally; CI reports its
+own hosted environment. Manifest validation alone does not prove native execution.
 
 Delete only your chosen archive and fictional demo folder to remove the demo.
 Keep or delete private results according to your own retention needs. There are
@@ -111,10 +111,14 @@ optional skill into an agent's discovery directory, remove that copy separately.
 
 ## Release and help
 
-The candidate is [MIT licensed](LICENSE); its public launch awaits final release
-review, a named maintainer and a confirmed private vulnerability-reporting route.
+The alpha is [MIT licensed](LICENSE) and maintained by Modern Labyrinth.
+Use [GitHub issues](https://github.com/modernlabyrinth/camicus/issues) for sanitized
+non-security bugs and questions; use the private route in SECURITY.md for vulnerabilities.
 See [contribution/provenance guidance](CONTRIBUTING.md), [security](SECURITY.md),
-[support](SUPPORT.md) and the [unreleased changelog](CHANGELOG.md).
+[support](SUPPORT.md) and the [changelog](CHANGELOG.md).
+
+See the [planned next steps](docs/roadmap.md) for guided inputs, broader Mac
+evidence and external pilots; these are not implemented alpha capabilities.
 
 Need this working with your actual tools? Modern Labyrinth can help scope the
 connection and verification work. The free core remains independently usable.

@@ -1,10 +1,10 @@
 # Changelog
 
-## 0.1.0 — unreleased
+## 0.1.0 — public alpha
 
 - Renamed the product and native plugin to Camicus; retained version-1 internal
   schema identifiers for compatibility with private weekly-brief results.
-- Private relocatable Codex/Claude plugin package with two shared workflow skills,
+- Relocatable Codex/Claude plugin package with two shared workflow skills,
   digest-bound executable and native permission boundaries.
 - Read-only Mac checks for selected security controls and visible TCP listeners,
   bounded fixed commands, explicit unobserved results and private evidence.
@@ -17,5 +17,7 @@
 - Deterministic standard-library executable archive and fresh fictional demo helper.
 - One shared Codex/Claude adapter reference and explicit scope/support limitations.
 
-No public release, live connector checks, macOS security certification, automatic
+- Deterministic dual-host public marketplace and SHA-256 file inventory.
+
+No live connector checks, macOS security certification, automatic
 repair, background monitoring, telemetry or global installation is included.

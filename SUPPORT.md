@@ -1,21 +1,20 @@
-# Support — local alpha
+# Support — public alpha
 
-This candidate supports one local-file weekly-brief contract on macOS 14+ with
-Python 3.11–3.14. See the README for the actually tested matrix. Other macOS and
-filesystem combinations within that range still need observations.
+Maintainer: Modern Labyrinth. Non-security questions and reproducible bugs go to
+[GitHub issues](https://github.com/modernlabyrinth/camicus/issues). Support is best
+effort with no response, availability or patch SLA. Report the version, Python
+and macOS versions, fixed diagnostic, actual exit code and a minimal fictional
+reproduction. Never attach real private results or machine inventories by default.
+Security reports use [SECURITY.md](SECURITY.md), not public issues.
 
-Community support is intended to be best effort, with no availability or response
-SLA. Public intake and a named maintainer are pending; no operational public
-support route is advertised. For now use the existing private project conversation.
-Report the version, fixed diagnostic, actual exit and a fictional reproduction.
-Never attach real private results by default. Security issues follow SECURITY.md.
+Both local weekly-brief and bounded read-only Mac-audit workflows require macOS
+14+ and Python 3.11–3.14. See [installation](docs/plugins.md) and README for the
+actually tested host/interpreter/filesystem matrix. Current native plugin tooling
+is supported where those commands exist; claude.ai/Cowork and cloud execution
+are not supported. Alpha interfaces may change; version-1 result schema identity
+is retained for compatibility. Historical unsigned results do not prove execution.
 
-Need this working with your actual tools? Modern Labyrinth can help scope a
-connection and verification engagement. That work needs an agreed workflow,
-authorized data/access, acceptance criteria and costed delivery capacity. The
-open-source core remains usable independently; there is no signup gate, paid
-unlock, savings promise or pre-priced ongoing-care commitment in this candidate.
-
-Maintainer assignment, a confirmed reporting route and release approval are
-required before public launch. This repository does not collect support requests,
-send messages, create accounts or start a service engagement.
+Modern Labyrinth can separately scope integration and verification work for your
+actual tools. That requires an agreed workflow, authorized data/access, acceptance
+criteria and costed delivery. The open-source core remains independently usable;
+there is no signup gate, paid unlock or savings promise.

@@ -1,4 +1,4 @@
-"""Build a private, relocatable plugin folder from an explicit reviewed allowlist."""
+"""Build a relocatable plugin folder from an explicit reviewed allowlist."""
 import argparse
 import ctypes
 import json

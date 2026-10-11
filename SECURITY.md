@@ -1,24 +1,22 @@
-# Security policy — unreleased candidate
+# Security policy
 
-Camicus 0.1.0 is a local experimental checker, not a security scanner. It does
-not certify your system, sandbox an assistant, resist a malicious same-user
-process/administrator, or authenticate unsigned historical receipts.
+Maintainer: Modern Labyrinth. Camicus 0.1.0 is an experimental local checker and
+bounded Mac audit. It does not certify a machine, sandbox an assistant, resist a
+malicious same-user process/administrator, or authenticate unsigned receipts.
+Only the latest alpha is maintained. There is no promised support period,
+response time or patch SLA.
 
-Only the current local candidate is evaluated. No public release has a promised
-security-support period, patch SLA or operational reporting channel yet.
+Report suspected vulnerabilities privately through
+[GitHub private vulnerability reporting](https://github.com/modernlabyrinth/camicus/security/advisories/new).
+Do not put vulnerabilities, credentials, real project data, machine inventories
+or private results in a public issue. If GitHub does not offer the private report
+form, do not substitute a public issue or an unverified address; wait for the
+maintainer to restore that channel.
 
-**Private vulnerability reporting is pending setup and confirmation.** Before
-public release, the maintainer must enable and verify a private reporting route
-and name its owner. Do not submit a real vulnerability or private data to a public
-issue or an invented contact address. During this local alpha, report issues only
-through the already authorized private project conversation.
+Include affected version/archive digest, platform, expected/observed behavior
+and a minimal fictional reproduction. The maintainer will reproduce, assess
+scope and publish a versioned fix or explicit limitation when warranted.
 
-Once the private route is operational, reports should include the affected
-version/archive digest, platform, expected versus observed behavior and a minimal
-fictional reproduction. Omit credentials, real task records and private receipts.
-The maintainer will reproduce, assess scope and publish a versioned fix or clear
-limitation. No response time is promised before maintenance capacity is assigned.
-
-Results and their hashes are private. No upload or telemetry exists in the
-checker, but the calling assistant and folder-sync software have their own data
-flows. Choose authorized inputs and storage accordingly.
+The checker has no telemetry or runtime network calls. Your calling assistant,
+cloud sync and backup software have their own data flows. Use authorized inputs
+and storage and share evidence deliberately.
