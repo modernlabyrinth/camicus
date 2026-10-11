@@ -49,5 +49,5 @@ authenticate past execution or prove source claims true.
 CLI diagnostics contain only bounded check IDs, states, reason codes, source
 aliases and structural field references. They contain no source prose, task IDs,
 hashes, raw exception messages or workspace paths. See troubleshooting for fixed
-repair guidance. The runtime performs no network or subprocess operations; it
+repair guidance. The weekly-brief workflow performs no network or subprocess operations; it
 does not sandbox the calling assistant or prevent folder synchronization.

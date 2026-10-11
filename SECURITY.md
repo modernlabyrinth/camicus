@@ -1,6 +1,6 @@
 # Security policy — unreleased candidate
 
-Minoetic 0.1.0 is a local experimental checker, not a security scanner. It does
+Camicus 0.1.0 is a local experimental checker, not a security scanner. It does
 not certify your system, sandbox an assistant, resist a malicious same-user
 process/administrator, or authenticate unsigned historical receipts.
 

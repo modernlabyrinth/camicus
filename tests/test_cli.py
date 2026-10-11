@@ -44,6 +44,23 @@ class CliTests(ModulesCase):
                 self.assertEqual(self.invoke(['verify', '--workspace', str(self.root), '--result', name])[0], 3)
                 opened.assert_not_called()
 
+    def test_mac_audit_arguments_keep_explicit_private_output_boundary(self):
+        args = ['audit-mac', '--workspace', str(self.root), '--output', 'audit.json']
+        self.assertEqual(self.cli._arguments(args), ('audit-mac', str(self.root), 'audit.json'))
+        for name in ('../escape.json', 'project.json', 'TASKS.json', 'bad\n.json'):
+            self.assertIsNone(self.cli._arguments(args[:-1] + [name]))
+        self.assertIsNone(self.cli._arguments(args[:-2] + ['--result', 'audit.json']))
+
+    def test_mac_audit_routes_to_separate_contract(self):
+        from types import SimpleNamespace
+        from unittest.mock import Mock
+        audit = Mock(return_value=self.module('workflow').Outcome(2, 'not_checked', (), True))
+        with patch.dict(sys.modules, {'minoetic.mac_audit': SimpleNamespace(run_audit=audit)}):
+            code, text = self.invoke(['audit-mac', '--workspace', str(self.root), '--output', 'audit.json'])
+        self.assertEqual(code, 2)
+        self.assertTrue(json.loads(text)['result_saved'])
+        self.assertEqual(audit.call_args.args[:2], (str(self.root), 'audit.json'))
+
     def test_exception_is_private(self):
         for error in (OSError(SENTINEL), RuntimeError(SENTINEL), KeyboardInterrupt(SENTINEL)):
             with patch.object(self.cli, 'run_check', side_effect=error):
@@ -78,7 +95,7 @@ class CliTests(ModulesCase):
         self.assertTrue(all(set(c) == {'id', 'state', 'reason', 'source', 'field'} for c in value['checks']))
         self.assertNotIn('sha256', text)
 
-    def test_runtime_has_no_network_or_process_operations(self):
+    def test_weekly_runtime_has_no_network_or_process_operations(self):
         events = []
         enabled = [True]
         def observer(event, _args):
@@ -96,8 +113,10 @@ class CliTests(ModulesCase):
             enabled[0] = False
         self.assertEqual(events, [])
         package = Path(__file__).parents[1] / 'minoetic'
-        forbidden = {'subprocess', 'socket', 'urllib', 'http', 'requests', 'glob'}
         for path in package.glob('*.py'):
+            forbidden = {'socket', 'urllib', 'http', 'requests', 'glob'}
+            if path.name not in ('mac_audit.py', 'mac_probe.py'):
+                forbidden.add('subprocess')
             tree = ast.parse(path.read_text())
             for node in ast.walk(tree):
                 if isinstance(node, ast.Import):

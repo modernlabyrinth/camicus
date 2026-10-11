@@ -1,28 +1,53 @@
-# Minoetic
+# Camicus
 
-**Check what still works.** A local weekly-brief checker by Modern Labyrinth.
+**Evidence checks for your AI tools.** Local checks by Modern Labyrinth.
 
-Unreleased 0.1.0 alpha candidate. Minoetic reads two explicitly selected JSON
-snapshots, builds a brief and checks its counts, blocker coverage, copied context,
-freshness declarations and source stability. Your existing assistant can run it.
-The owner does not need another dashboard or a background service.
+Unreleased 0.1.0 private alpha candidate. Camicus runs through Codex or Claude Code
+with two workflows: a checked weekly brief from two selected JSON snapshots, and
+a read-only Mac audit of selected security controls and visible TCP listeners.
+Use your existing assistant; there is no separate dashboard or background service.
 
-A pass means: **“This local weekly brief passed the declared checks against the
+Build the [local plugin](docs/plugins.md) for either assistant. The shared engine
+uses Python's standard library and does not make network requests. Its Mac audit
+runs six fixed local system commands; the weekly workflow does not start processes.
+
+## Choose a workflow
+
+| Ask your assistant | Camicus reads | You receive |
+| --- | --- | --- |
+| Check this week's client update | Explicit `project.json` and `tasks.json` snapshots | Counts, named blockers and checks bound to those source bytes |
+| Check my Mac's basic protections and listening ports | Fixed read-only macOS command outputs | Observed settings, visible listeners and unavailable observations |
+
+The [Mac audit contract](docs/mac-audit.md) covers FileVault, SIP, Gatekeeper,
+application firewall, informational stealth mode and a limited listener snapshot.
+It does not assess Little Snitch rules, executable provenance or internet exposure.
+No settings are changed. A listener is not automatically a vulnerability.
+
+A weekly-brief pass means: **“This local weekly brief passed the declared checks against the
 observed source bytes.”** It does not certify your Mac, prove the sources true,
 test upstream connections, or check an assistant's surrounding prose.
+
+Camicus checks observations and preserves evidence. An optional semantic reviewer
+such as Jev can assess whether a claim follows from supplied evidence. That handoff
+is proposed, not integrated into this engine. Camicus works without Jev.
+
+The former name was Minoetic. The Python package and version-1 result schema names
+retain `minoetic` for compatibility with existing private weekly-brief receipts.
+The user-facing plugin and executable are named `camicus`.
 
 ## Try the fictional example
 
 Requirements: macOS 14+ and Python 3.11–3.14. No runtime dependencies or network
-calls. This candidate is local; no download or package-registry install is offered.
+calls. Private plugin and source downloads are available in the owner preview;
+there is no public package-registry release.
 From an inspected checkout, run these commands using a supported Python:
 
 ```sh
 mkdir -p dist
-python3 -I -S tools/build_release.py --output "$PWD/dist/minoetic-0.1.0"
+python3 -I -S tools/build_release.py --output "$PWD/dist/camicus-0.1.0"
 python3 -I -S tools/make_demo.py --workspace "$PWD/dist/fictional-demo"
-python3 -I -S "$PWD/dist/minoetic-0.1.0" check --workspace "$PWD/dist/fictional-demo" --output first.json
-python3 -I -S "$PWD/dist/minoetic-0.1.0" verify --workspace "$PWD/dist/fictional-demo" --result first.json
+python3 -I -S "$PWD/dist/camicus-0.1.0" check --workspace "$PWD/dist/fictional-demo" --output first.json
+python3 -I -S "$PWD/dist/camicus-0.1.0" verify --workspace "$PWD/dist/fictional-demo" --result first.json
 ```
 
 Use the physical absolute checkout path: symlinked workspace components are
@@ -68,14 +93,16 @@ authorization.
 ## Development and removal
 
 Run `python3 -I -S tests/run.py`. The source uses only the Python standard library;
-the deterministic archive includes eight explicit runtime modules, its entry
+the deterministic archive includes nine explicit runtime modules, its entry
 point and the license. No tests, dotfiles, receipts or local evidence are packaged.
-Audit observers and source checks exercise the no-network/no-subprocess claim;
+Audit observers and source checks exercise the weekly no-network/no-subprocess claim;
 they are not an OS sandbox.
 
-On October 11, 2026, all 70 tests passed separately on Python 3.11.13, 3.12.2,
-3.13.15 and 3.14.7, on macOS 14.8.9 with local APFS. This is the tested matrix;
-other supported macOS releases and filesystems have not been exercised here.
+On October 11, 2026, the earlier weekly-brief baseline's 70 tests passed separately
+on Python 3.11.13, 3.12.2, 3.13.15 and 3.14.7, on macOS 14.8.9 with local APFS.
+The current 87-test suite adds plugin and Mac-audit coverage; its new checks have
+been run on Python 3.14.7. Other supported macOS releases and filesystems have not
+been exercised here.
 
 Delete only your chosen archive and fictional demo folder to remove the demo.
 Keep or delete private results according to your own retention needs. There are

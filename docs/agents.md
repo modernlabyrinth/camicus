@@ -1,5 +1,11 @@
 # Codex and Claude adapter
 
+The packaged Camicus plugin is the recommended setup for new private testing.
+See [plugin installation](plugins.md) for both native hosts and the two included
+skills. The path-based adapter below remains available for existing weekly-brief
+workflows. The Python package and old result schema identifiers remain `minoetic`
+for compatibility; new plugin and executable names are `camicus`.
+
 Both harnesses use [one shared skill](../skills/minoetic/SKILL.md). The checker is
 a reviewed executable archive, not an MCP server or background agent. It requires
 authorized local command/file access. A successful read does not authorize a
@@ -26,7 +32,9 @@ discovery installation should point to this same maintained source.
 ## Evidence and limits
 
 For a native demonstration, preserve actual tool invocation events and exit codes,
-archive digest, fresh result run ID and SHA-256, then perform read-only verification.
+archive digest, fresh result run ID and SHA-256. For a weekly brief, then perform
+read-only `verify`. For a Mac audit, rerun into a fresh filename when a new
+observation is needed; weekly `verify` does not accept the Mac schema.
 Record the actual returned model identity if exposed; a caller label is not model
 evidence. A shell command outside the native harness does not prove that adapter.
 Use fictional inputs for demonstrations. Keep raw events private and never copy

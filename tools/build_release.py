@@ -7,7 +7,7 @@ from pathlib import Path
 import zipfile
 
 RUNTIME = tuple('minoetic/' + name + '.py' for name in
-                ('__init__', '__main__', 'models', 'contracts', 'brief', 'storage', 'workflow', 'cli'))
+                ('__init__', '__main__', 'models', 'contracts', 'brief', 'storage', 'workflow', 'cli', 'mac_audit'))
 ENTRY = b'''import sys
 if sys.platform != 'darwin' or not (3, 11) <= sys.version_info[:2] <= (3, 14):
     print('{"overall":"checker_error","exit_code":3,"result_saved":false,"checks":[{"id":"checker","state":"failed","reason":"unsupported_platform","source":null,"field":null}]}')

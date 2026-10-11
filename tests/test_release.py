@@ -13,7 +13,7 @@ import zipfile
 from tests.support import ModulesCase
 
 ROOT = Path(__file__).parents[1]
-RUNTIME = {'minoetic/' + name + '.py' for name in ('__init__', '__main__', 'models', 'contracts', 'brief', 'storage', 'workflow', 'cli')}
+RUNTIME = {'minoetic/' + name + '.py' for name in ('__init__', '__main__', 'models', 'contracts', 'brief', 'storage', 'workflow', 'cli', 'mac_audit')}
 
 
 class ReleaseTests(ModulesCase):
@@ -70,7 +70,7 @@ class ReleaseTests(ModulesCase):
         for name in ('json.py', 'sitecustomize.py'):
             (hostile / name).write_text(payload)
         for direct in (False, True):
-            self.assertEqual(self.call(archive, '--version', cwd=hostile, direct=direct), (0, 'minoetic 0.1.0\n'))
+            self.assertEqual(self.call(archive, '--version', cwd=hostile, direct=direct), (0, 'camicus 0.1.0\n'))
         self.assertFalse(marker.exists())
 
     def test_archive_check_verify(self):
@@ -105,7 +105,7 @@ class ReleaseTests(ModulesCase):
             if '://' not in target and not target.startswith('#'):
                 self.assertTrue((ROOT / target.split('#')[0]).is_file(), target)
         archive = self.build('minoetic-0.1.0')
-        self.assertEqual(self.call(archive, '--version'), (0, 'minoetic 0.1.0\n'))
+        self.assertEqual(self.call(archive, '--version'), (0, 'camicus 0.1.0\n'))
         with zipfile.ZipFile(archive) as package:
             self.assertEqual(package.read('LICENSE'), (ROOT / 'LICENSE').read_bytes())
         public = [p for p in ROOT.iterdir() if p.suffix == '.md' or p.name == 'LICENSE']

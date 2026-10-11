@@ -7,11 +7,13 @@ from . import __version__, models
 from .storage import acl_available, valid_name
 from .workflow import Outcome, checker_error, run_check, run_verify
 
-HELP = '''Minoetic — Check what still works.
+HELP = '''Camicus — Check what still works.
 check --workspace ABSOLUTE_PATH --output NEW_NAME.json
 verify --workspace ABSOLUTE_PATH --result SAVED_NAME.json
+audit-mac --workspace ABSOLUTE_PATH --output NEW_NAME.json
 --help | --version
-Local weekly-brief checks only; results are private, unsigned evidence.'''
+Local weekly-brief checks and read-only Mac observations.
+Results are private, unsigned evidence; no whole-device security verdict.'''
 
 
 def format_outcome(outcome: Outcome) -> str:
@@ -31,9 +33,9 @@ def _supported():
 
 
 def _arguments(argv):
-    if len(argv) != 5 or argv[0] not in ('check', 'verify'):
+    if len(argv) != 5 or argv[0] not in ('check', 'verify', 'audit-mac'):
         return None
-    file_flag = '--output' if argv[0] == 'check' else '--result'
+    file_flag = '--result' if argv[0] == 'verify' else '--output'
     pairs = list(zip(argv[1::2], argv[2::2]))
     if {key for key, _ in pairs} != {'--workspace', file_flag}:
         return None
@@ -53,7 +55,7 @@ def main(argv: list[str] | None = None) -> int:
             print(HELP)
             return 0
         if args == ['--version']:
-            print('minoetic ' + __version__)
+            print('camicus ' + __version__)
             return 0
         selected = _arguments(args)
         if selected is None:
@@ -62,7 +64,11 @@ def main(argv: list[str] | None = None) -> int:
             outcome = checker_error('unsupported_platform')
         else:
             command, workspace, filename = selected
-            run = run_check if command == 'check' else run_verify
+            if command == 'audit-mac':
+                from .mac_audit import run_audit
+                run = run_audit
+            else:
+                run = run_check if command == 'check' else run_verify
             outcome = run(workspace, filename, models.utc_now())
     except (Exception, KeyboardInterrupt):
         outcome = checker_error()

@@ -1,9 +1,9 @@
 ---
 name: minoetic
-description: Use when an owner asks to check or verify a local weekly brief from project.json and tasks.json with Minoetic. This alpha does not audit macOS or live connectors.
+description: Use when an owner asks to check or verify a local weekly brief from project.json and tasks.json with Camicus. This alpha does not audit macOS or live connectors.
 ---
 
-# Minoetic: local weekly brief
+# Camicus: local weekly brief
 
 Use the exact reviewed archive and SHA-256 supplied by the owner or current task.
 Confirm the explicit authorized workspace from context; ask only if it is missing
